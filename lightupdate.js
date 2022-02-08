@@ -197,18 +197,19 @@ function checkTeam(killerName) {
 //-=================================================-
 // setColor sets the color of the phillips hue lamps
 //-=================================================-
-async function setColor(on, hue, sat, bri) {
+async function setColor(lightId, on, hue, sat, bri) {
     try {
+        let transitiontime = 1; 
         for(let lightId = 0; lampsnumber >= lightId; lightId++) {
             return await axios.put(`http://${bridgeIP}/api/${username}/lights/${lightId}/state`, 
                 {on,
                     ...(hue && { hue }),
                     ...(sat && { sat }),
                     ...(bri && { bri }),
+                    ...(transitiontime && { transitiontime }),
                 }
-            );
-        }
-        await delay(500);
+            ); 
+        } 
     } catch (err) {
         console.error(err);
     }
@@ -220,15 +221,15 @@ async function setColor(on, hue, sat, bri) {
 //-===========================================-
 async function lightsKill(friendly) {
     if(friendly) {
-        setColor(true, 210, 100, 56);
-        setColor(true, 0, 0, 0);
-        setColor(true, 210, 100, 56);
-        setColor(true, 0, 0, 0);
+        setColor(lightId, true, 210, 100, 56);
+        setColor(lightId, true, 0, 0, 0);
+        setColor(lightId, true, 210, 100, 56);
+        setColor(lightId, true, 0, 0, 0);
     } else {
-        setColor(true, 0, 89, 28);
-        setColor(true, 0, 0, 0);
-        setColor(true, 0, 89, 28);
-        setColor(true, 0, 0, 0);
+        setColor(lightId, true, 0, 89, 28);
+        setColor(lightId, true, 0, 0, 0);
+        setColor(lightId, true, 0, 89, 28);
+        setColor(lightId, true, 0, 0, 0);
     }
 }
 
