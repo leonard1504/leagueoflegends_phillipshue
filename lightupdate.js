@@ -221,15 +221,15 @@ async function setColor(lightId, on, hue, sat, bri) {
 //-===========================================-
 async function lightsKill(friendly) {
     if(friendly) {
-        setColor(lightId, true, 210, 100, 56);
-        setColor(lightId, true, 0, 0, 0);
-        setColor(lightId, true, 210, 100, 56);
-        setColor(lightId, true, 0, 0, 0);
+        setColor(true, 210, 100, 56);
+        setColor(true, 0, 0, 0);
+        setColor(true, 210, 100, 56);
+        setColor(true, 0, 0, 0);
     } else {
-        setColor(lightId, true, 0, 89, 28);
-        setColor(lightId, true, 0, 0, 0);
-        setColor(lightId, true, 0, 89, 28);
-        setColor(lightId, true, 0, 0, 0);
+        setColor(true, 0, 89, 28);
+        setColor(true, 0, 0, 0);
+        setColor(true, 0, 89, 28);
+        setColor(true, 0, 0, 0);
     }
 }
 
