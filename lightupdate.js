@@ -197,19 +197,20 @@ function checkTeam(killerName) {
 //-=================================================-
 // setColor sets the color of the phillips hue lamps
 //-=================================================-
-async function setColor(lightId, on, hue, sat, bri) {
+async function setColor(on, hue, sat, bri) {
     try {
         let transitiontime = 1; 
-        for(let lightId = 0; lampsnumber >= lightId; lightId++) {
-            return await axios.put(`http://${bridgeIP}/api/${username}/lights/${lightId}/state`, 
+        for(let i = 0; lampsnumber > i; i++) {
+            return await axios.put(`http://${bridgeIP}/api/${username}/lights/${i}/state`, 
                 {on,
                     ...(hue && { hue }),
                     ...(sat && { sat }),
                     ...(bri && { bri }),
                     ...(transitiontime && { transitiontime }),
                 }
-            ); 
-        } 
+            );
+            console.log(`Lamp Nr. ${i} has the following values now H: ${hue} S: ${sat} L: ${bri}`); 
+        }
     } catch (err) {
         console.error(err);
     }
@@ -220,7 +221,7 @@ async function setColor(lightId, on, hue, sat, bri) {
 // for the events happening ingame
 //-===========================================-
 async function lightsKill(friendly) {
-    if(friendly) {
+    if(friendly === true) {
         setColor(true, 210, 100, 56);
         setColor(true, 0, 0, 0);
         setColor(true, 210, 100, 56);
@@ -234,7 +235,7 @@ async function lightsKill(friendly) {
 }
 
 async function lightsAce(friendly) {
-    if(friendly) {
+    if(friendly === true) {
         setColor(true, 210, 100, 56);
         setColor(true, 210, 100, 71);
         setColor(true, 210, 100, 56);
