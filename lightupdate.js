@@ -145,14 +145,12 @@ async function getEvents(startIndex) {
                     if(events.Events[(startIndex)+1].EventName === "FirstBlood") {
                         checkTeam(events.Events[(startIndex)+1].Recipient);
                         lightsKill(friendly);
+                    } else if (events.Events[(startIndex)+1].EventName === "Ace"){
+                        checkTeam(events.Events[(startIndex)+1].Acer);
+                        lightsAce(friendly);
                     } else {
                         checkTeam(events.Events[startIndex].KillerName);
                         lightsKill(friendly);
-                    }
-                    if(events.Events[(startIndex)+1].EventName === "Ace") {
-                        console.log("Ace");
-                        checkTeam(events.Events[(startIndex)+1].Acer);
-                        lightsAce(friendly);
                     }
                     break;
                 case "GameEnd":
@@ -199,14 +197,12 @@ function checkTeam(killerName) {
 //-=================================================-
 async function setColor(on, hue, sat, bri) {
     try {
-        let transitiontime = 1; 
-        for(let i = 0; lampsnumber > i; i++) {
-            return await axios.put(`http://${bridgeIP}/api/${username}/lights/${i}/state`, 
+        for(let i = 1; lampsnumber >= i; i++) {
+            await axios.put(`http://${bridgeIP}/api/${username}/lights/${i}/state`, 
                 {on,
                     ...(hue && { hue }),
                     ...(sat && { sat }),
                     ...(bri && { bri }),
-                    ...(transitiontime && { transitiontime }),
                 }
             );
             console.log(`Lamp Nr. ${i} has the following values now H: ${hue} S: ${sat} L: ${bri}`); 
@@ -222,86 +218,122 @@ async function setColor(on, hue, sat, bri) {
 //-===========================================-
 async function lightsKill(friendly) {
     if(friendly === true) {
-        setColor(true, 210, 100, 56);
-        setColor(true, 0, 0, 0);
-        setColor(true, 210, 100, 56);
-        setColor(true, 0, 0, 0);
+        setColor(true, 122, 53, 62);
+        await delay(800);
+        setColor(true, 39385,13,254);
+        await delay(800);
+        setColor(true, 122, 53, 62);
+        await delay(800);
+        setColor(true, 39385,13,254);
     } else {
         setColor(true, 0, 89, 28);
-        setColor(true, 0, 0, 0);
+        await delay(800);
+        setColor(true, 39385,13,254);
+        await delay(800);
         setColor(true, 0, 89, 28);
-        setColor(true, 0, 0, 0);
+        await delay(800);
+        setColor(true, 39385,13,254);
     }
 }
 
 async function lightsAce(friendly) {
     if(friendly === true) {
-        setColor(true, 210, 100, 56);
-        setColor(true, 210, 100, 71);
-        setColor(true, 210, 100, 56);
-        setColor(true, 0, 0, 0);
+        setColor(true, 122, 53, 62);
+        await delay(800);
+        setColor(true, 122, 53, 82);
+        await delay(800);
+        setColor(true, 122, 53, 62);
+        await delay(800);
+        setColor(true, 39385,13,254);
     } else {
         setColor(true, 0, 89, 28);
+        await delay(800);
         setColor(true, 0, 89, 46);
+        await delay(800);
         setColor(true, 0, 89, 28);
-        setColor(true, 0, 0, 0);
+        await delay(800);
+        setColor(true, 39385,13,254);
     }
 }
 
 async function lightsFireD() {
     setColor(true, 38, 96, 62);
+    await delay(800);
     setColor(true, 38, 96, 36);
+    await delay(800);
     setColor(true, 38, 96, 18);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsEarthD() {
     setColor(true, 33, 46, 36);
+    await delay(800);
     setColor(true, 38, 96, 30);
+    await delay(800);
     setColor(true, 38, 96, 22);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsAirD() {
     setColor(true, 171, 42, 80);
+    await delay(800);
     setColor(true, 171, 42, 50);
+    await delay(800);
     setColor(true, 171, 42, 30);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsWaterD() {
     setColor(true, 187, 92, 45);
+    await delay(800);
     setColor(true, 187, 92, 30);
+    await delay(800);
     setColor(true, 187, 92, 15);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsHexD() {
     setColor(true, 221, 100, 82);
+    await delay(800);
     setColor(true, 221, 100, 60);
+    await delay(800);
     setColor(true, 221, 100, 38);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsChemD() {
     setColor(true, 89, 100, 27);
+    await delay(800);
     setColor(true, 89, 100, 19);
+    await delay(800);
     setColor(true, 89, 100, 10);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsElderD() {
     setColor(true, 177, 90, 59);
+    await delay(800);
     setColor(true, 177, 90, 37);
+    await delay(800);
     setColor(true, 177, 90, 24);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 async function lightsBaron_Herald() {
     setColor(true, 268, 73, 41);
+    await delay(800);
     setColor(true, 268, 73, 31);
+    await delay(800);
     setColor(true, 268, 73, 21);
-    setColor(true, 0, 0, 0);
+    await delay(800);
+    setColor(true, 39385,13,254);
 }
 
 init();
